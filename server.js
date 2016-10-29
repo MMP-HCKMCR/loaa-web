@@ -5,8 +5,8 @@
 
 // call the packages we need
 //var express = require('../..');
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
+var express = require('express');        // call express
+var app = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var mongoose     = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -45,4 +45,4 @@ mongoose.connect('mongodb://admin:H4ck.All.N1ght@ds013569.mlab.com:13569/loaa', 
     // =============================================================================
     app.listen(port);
     console.log('Magic happens on port ' + port);
-});// connect to our database
+});
