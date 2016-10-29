@@ -17,7 +17,7 @@ App [MVP1]
 - Have a full list / hystory page where a user can go back and edit info if they have spotted a missing person before the 24hours retry
 
 Server / API endoint [MVP1]
-- [Get] ListOfMissingPPL
+- [Get] ListOfMissingPeople
 -- pass in user locaiton to sort list in a relevant location based way
 - [Post] missingPersonSeen
 -- takes in info about where the person has been seen and the user's info so the popo can get in thouch
