@@ -1,21 +1,27 @@
 var Account = require('../../app/models/account');
 
 exports.create = function (req, res) {
+    var phoneNumber = req.body.phoneNumber;
+    var foreName = req.body.foreName;
+    var sureName = req.body.sureName;
+
+    if (!phoneNumber) {
+        res.json({ message: 'No phone number supplied' });
+        return;
+    }
 
     Account.findOne({ phoneNumber: req.body.phoneNumber }, function(err, account) {
         if (!account) {
             var _account = new Account();
 
-            if (req.body.foreName) {
-                _account.foreName = req.body.foreName
+            if (foreName) {
+                _account.foreName = foreName
             }
-            if (req.body.sureName) {
-                _account.sureName = req.body.sureName
+            if (sureName) {
+                _account.sureName = sureName
             }
-            if (req.body.phoneNumber) {
-                _account.phoneNumber = req.body.phoneNumber
-            }
-
+            
+            _account.phoneNumber = phoneNumber
             _account.guid = generateGUID()
 
             _account.save(function (err) {
