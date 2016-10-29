@@ -2,7 +2,7 @@ var Account = require('../../app/models/account');
 
 exports.create = function (req, res) {
 
-    Account.find({ phoneNumber: req.body.phoneNumber }, function(err, account) {
+    Account.findOne({ phoneNumber: req.body.phoneNumber }, function(err, account) {
         if (!account) {
             var _account = new Account();
 
