@@ -21,25 +21,12 @@ var port = process.env.PORT || 8080;        // set our port
 module.exports = app;
 
 app.get('/missing', missing.list);
+app.put('/missing/:id', missing.seen);
 app.get('/account/:id', account.retrieve);
 app.post('/account', account.create);
 app.put('/account/:id', account.update);
-/*
-router.post('/MissingPersonSeen', function(req, res) {
-    res.json({ message: 'hooray! welcome to our MissingPersonSeen!' });   
-});
-
-router.post('/CreateAccount', function(req, res) {
-    res.json({ message: 'hooray! welcome to our CreateAccount!' });   
-});
-
-router.delete('/DeleteAccount', function(req, res) {
-    res.json({ message: 'hooray! welcome to our DeleteAccount!' });   
-});
-
-router.post('/Login', function(req, res) {
-    res.json({ message: 'hooray! welcome to our Login!' });   
-});*/
+app.delete('/account/:id', account.delete);
+app.put('/account/:id/login', account.login);
 
 // START THE SERVER
 // =============================================================================
