@@ -5,11 +5,11 @@
 
 // call the packages we need
 //var express = require('../..');
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
+var express = require('express');        // call express
+var app = express();                 // define our app using express
 var bodyParser = require('body-parser');
-var seen     = require('./api/missing/seen');
-var list     = require('./api/missing/list');
+var seen = require('./api/missing/seen');
+var list = require('./api/missing/list');
 var accountCreate = require('./api/account/create');
 var accountRetrieve = require('./api/account/retrieve');
 var accountUpdate = require('./api/account/update');
