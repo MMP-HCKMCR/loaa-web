@@ -40,9 +40,12 @@ app.put('/api/account/:id', accountUpdate.update);
 app.delete('/api/account/:id', accountDelete.delete);
 app.post('/api/account/login', accountLogin.login);
 
+// set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/public')); 
+
 // Load the website
 app.get('/', function(req, res) {
-    res.sendfile('./public/views/index.html'); // load our public/index.html file
+    res.sendfile('./public/index.html'); // load our public/index.html file
 });
 
 // START THE SERVER
