@@ -6,12 +6,17 @@ exports.create = function (req, res) {
     var sureName = req.body.sureName;
 
     if (!phoneNumber) {
+        console.log('No phone number');
         res.json({ message: 'No phone number supplied' });
         return;
     }
 
     Account.findOne({ phoneNumber: req.body.phoneNumber }, function(err, account) {
-        if (!account) {
+        if (err) {
+            console.log(err);
+            res.json({ message: 'Error' });
+        }
+        else if (!account) {
             var _account = new Account();
 
             if (foreName) {
@@ -25,10 +30,13 @@ exports.create = function (req, res) {
             _account.guid = generateGUID()
 
             _account.save(function (err) {
-                if (err)
+                if (err) {
+                    console.log(err);
                     res.json({ message: 'Error' });
-                else
+                }
+                else {
                     res.json(_account);
+                }
             });
         }
         else {
