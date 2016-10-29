@@ -71,6 +71,15 @@ exports.list = function (req, res) {
                     lessThan.push(allMissingPersons[i]);
                 }
             }
+
+            lessThan.sort(function (a, b) {
+                var keyA = a.distance,
+                    keyB = b.distance;
+
+                if (keyA < keyB) return -1;
+                if (keyA > keyB) return 1;
+                return 0;
+            });
             // limit to < 4000 distance
             res.json({ missing: lessThan });
         });
