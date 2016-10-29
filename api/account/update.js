@@ -1,4 +1,26 @@
-exports.update = function(req, res){
-    // update an new account in the database
-    res.json({ message: 'hooray! welcome to our ListOfMissingPeople!' });
+var Account = require('../../app/models/account');
+
+exports.update = function (req, res) {
+    Account.findById(req.params.id, function (err, account) {
+        if (!account)
+            return next(new Error('Could not load Document'));
+        else {
+            if (req.body.foreName) {
+                account.foreName = req.body.foreName
+            }
+            if (req.body.sureName) {
+                account.sureName = req.body.sureName
+            }
+            if (req.body.phoneNumber) {
+                account.phoneNumber = req.body.phoneNumber
+            }
+
+            account.save(function (err) {
+                if (err)
+                    res.json({ message: 'Error' });
+                else
+                    res.json({ message: 'Account Updated' });
+            });
+        }
+    });
 }
