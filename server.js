@@ -10,6 +10,7 @@ var app = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+mongoose.Promise = global.Promise;
 db.on('error', console.error.bind(console, 'connection error:'));
 mongoose.connect('mongodb://admin:H4ck.All.N1ght@ds013569.mlab.com:13569/loaa');
 
@@ -37,7 +38,7 @@ app.get('/api/account/:phoneNumber', accountRetrieve.retrieve);
 app.post('/api/account', accountCreate.create);
 app.put('/api/account/:id', accountUpdate.update);
 app.delete('/api/account/:id', accountDelete.delete);
-app.put('/api/account/:id/login', accountLogin.login);
+app.post('/api/account/login', accountLogin.login);
 
 // START THE SERVER
 // =============================================================================

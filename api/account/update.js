@@ -19,7 +19,7 @@ exports.update = function (req, res) {
                 if (err)
                     res.json({ message: 'Error' });
                 else
-                    res.json({ message: 'Account Updated' });
+                    res.json(account);
             });
         }
     });
