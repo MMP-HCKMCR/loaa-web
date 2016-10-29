@@ -1,0 +1,1 @@
+angular.module('loaaApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'LoaaService']);
