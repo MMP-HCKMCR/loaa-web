@@ -6,16 +6,14 @@ var request2 = require('request');
 
 function getLatLong(person, callback) {
     var myResponse = {};
-    console.log(person.posX27700 + ' ' + person.posY27700)
     if (!person.latitude) {
         request2.post(
             'http://tasks.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer/project?inSR=27700&outSR=4326&geometries={%0D%0A"geometryType"+%3A+"esriGeometryPoint"%2C%0D%0A"geometries"+%3A+[%0D%0A+{"x"+%3A+' + person.posX27700 + '%2C+"y"+%3A+' + person.posY27700 + '}%0D%0A]%0D%0A}&transformation=&transformForward=true&f=pjson',
             { json: { key: 'value' } },
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    console.log(body.geometries[0].x + " " + body.geometries[0].y)
-                    myResponse.latitude = body.geometries[0].x
-                    myResponse.longitude = body.geometries[0].y
+                    myResponse.longitude = body.geometries[0].x
+                    myResponse.latitude = body.geometries[0].y
                     callback(myResponse);
                 }
             }
@@ -38,12 +36,14 @@ function loooooooop(allMissingPersons, callback) {
     for (i = 0; i < allMissingPersons.length; i++) {
         (function (i) {
             getLatLong(allMissingPersons[i], function (value) {
-                allMissingPersons[i].longitude = value.longitude
-                allMissingPersons[i].latitude = value.latitude
-                allMissingPersons[i].distance = geolib.getDistance(
-                    { latitude: request.body.latitude, longitude: request.body.longitude },
-                    { latitude: value.latitude, longitude: value.longitude }
-                );
+                if (request.body.latitude && request.body.longitude && value.longitude && value.latitude) {
+                    allMissingPersons[i].longitude = value.longitude
+                    allMissingPersons[i].latitude = value.latitude
+                    allMissingPersons[i].distance = geolib.getDistance(
+                        { latitude: request.body.latitude, longitude: request.body.longitude },
+                        { latitude: value.latitude, longitude: value.longitude }
+                    );
+                }
                 count++;
                 if (count === length - 1) {
                     callback("done");
@@ -65,7 +65,6 @@ exports.list = function (req, res) {
         }
 
         loooooooop(allMissingPersons, function (val) {
-            console.log("it has finished")
             res.json({ missing: allMissingPersons });
         });
     });
