@@ -8,8 +8,13 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
-var missing     = require('./missing');
-var account     = require('./account');
+var seen     = require('./api/missing/seen');
+var list     = require('./api/missing/list');
+var accountCreate = require('./api/account/create');
+var accountRetrieve = require('./api/account/retrieve');
+var accountUpdate = require('./api/account/update');
+var accountDelete = require('./api/account/delete');
+var accountLogin = require('./api/account/login');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -20,13 +25,13 @@ var port = process.env.PORT || 8080;        // set our port
 
 module.exports = app;
 
-app.get('/missing', missing.list);
-app.put('/missing/:id', missing.seen);
-app.get('/account/:id', account.retrieve);
-app.post('/account', account.create);
-app.put('/account/:id', account.update);
-app.delete('/account/:id', account.delete);
-app.put('/account/:id/login', account.login);
+app.get('/api/missing', list.list);
+app.put('/api/missing/:id', seen.seen);
+app.get('/api/account/:id', accountRetrieve.retrieve);
+app.post('/api/account', accountCreate.create);
+app.put('/api/account/:id', accountUpdate.update);
+app.delete('/api/account/:id', accountDelete.delete);
+app.put('/api/account/:id/login', accountLogin.login);
 
 // START THE SERVER
 // =============================================================================
