@@ -1,4 +1,12 @@
+var MissingPerson = require('../../app/models/missingPerson');
+
 exports.list = function(req, res){
     // get the list of all missing people from the database
-    res.json({ message: 'hooray! welcome to our ListOfMissingPeople!' });
-}
+    MissingPerson.find(function(err, allMissingPersons) {
+        if(err) {
+            res.json(err);
+        }
+
+        res.json(allMissingPersons);
+    });
+};
