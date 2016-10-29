@@ -40,6 +40,11 @@ app.put('/api/account/:id', accountUpdate.update);
 app.delete('/api/account/:id', accountDelete.delete);
 app.post('/api/account/login', accountLogin.login);
 
+// Load the website
+app.get('/', function(req, res) {
+    res.sendfile('./public/views/index.html'); // load our public/index.html file
+});
+
 // START THE SERVER
 // =============================================================================
 app.listen(port);
