@@ -3,7 +3,7 @@ var Account = require('../../app/models/account');
 exports.update = function (req, res) {
     Account.findById(req.params.id, function (err, account) {
         if (!account)
-            return next(new Error('Could not load Document'));
+            res.json('Could not load Document');
         else {
             if (req.body.foreName) {
                 account.foreName = req.body.foreName
