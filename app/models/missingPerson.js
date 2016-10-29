@@ -19,7 +19,10 @@ var MissingPeopleSchema   = new Schema({
     created: String,
     updated: String,
     lastSeen: [],
-    statusChangedToUnconfirmed: String
+    statusChangedToUnconfirmed: String,
+    latitude: String,
+    longitude: String,
+    distance: String
 });
 
 module.exports = mongoose.model('missing_persons', MissingPeopleSchema);

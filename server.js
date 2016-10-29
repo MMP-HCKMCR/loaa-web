@@ -32,7 +32,7 @@ var port = process.env.PORT || 8080;        // set our port
 
 module.exports = app;
 
-app.get('/api/missing', list.list);
+app.post('/api/missing', list.list);
 app.put('/api/missing/:id', seen.seen);
 app.get('/api/account/:phoneNumber', accountRetrieve.retrieve);
 app.post('/api/account', accountCreate.create);
