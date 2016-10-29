@@ -5,9 +5,11 @@ exports.login = function(req, res){
 
     Account.findOne({ guid: token }, function(err, account) {
         if (err) {
-            res.send(err);
+            console.log(err);
+            res.json({ message: 'Error' });
         }
-
-        res.json(account);
+        else {
+            res.json(account);
+        }
     });
 }
