@@ -1,4 +1,5 @@
+var Account = require('../../app/models/account');
+
 exports.delete = function(req, res){
-    // update an new account in the database
-    res.json({ message: 'hooray! welcome to our ListOfMissingPeople!' });
+    Account.findById(req.params.id).remove().exec();
 }
