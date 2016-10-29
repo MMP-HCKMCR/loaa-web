@@ -37,7 +37,7 @@ app.get('/api/account/:phoneNumber', accountRetrieve.retrieve);
 app.post('/api/account', accountCreate.create);
 app.put('/api/account/:id', accountUpdate.update);
 app.delete('/api/account/:id', accountDelete.delete);
-app.put('/api/account/:id/login', accountLogin.login);
+app.post('/api/account/login', accountLogin.login);
 
 // START THE SERVER
 // =============================================================================

@@ -1,4 +1,13 @@
+var Account = require('../../app/models/account');
+
 exports.login = function(req, res){
-    // update an new account in the database
-    res.json({ message: 'hooray! welcome to our ListOfMissingPeople!' });
+    var token = req.body.token;
+
+    Account.findOne({ guid: token }, function(err, account) {
+        if (err) {
+            res.send(err);
+        }
+
+        res.json(account);
+    });
 }
