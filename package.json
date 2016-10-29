@@ -4,6 +4,7 @@
   "description": "Lost and Found Web REST API",
   "main": "server.js",
   "scripts": {
+    "start": "bower install; node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
