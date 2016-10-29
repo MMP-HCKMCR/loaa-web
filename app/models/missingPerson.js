@@ -18,7 +18,7 @@ var MissingPeopleSchema   = new Schema({
     wentMissing: String,
     created: String,
     updated: String,
-    lastSeen: String,
+    lastSeen: [],
     statusChangedToUnconfirmed: String
 });
 
