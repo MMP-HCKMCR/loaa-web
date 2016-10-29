@@ -2,26 +2,34 @@ var Account = require('../../app/models/account');
 
 exports.create = function (req, res) {
 
-    var account = new Account();
+    Account.find({ phoneNumber: req.body.phoneNumber }, function(err, account) {
+        if (!account) {
+            var _account = new Account();
 
-    if (req.body.foreName) {
-        account.foreName = req.body.foreName
-    }
-    if (req.body.sureName) {
-        account.sureName = req.body.sureName
-    }
-    if (req.body.phoneNumber) {
-        account.phoneNumber = req.body.phoneNumber
-    }
+            if (req.body.foreName) {
+                _account.foreName = req.body.foreName
+            }
+            if (req.body.sureName) {
+                _account.sureName = req.body.sureName
+            }
+            if (req.body.phoneNumber) {
+                _account.phoneNumber = req.body.phoneNumber
+            }
 
-    account.guid = generateGUID()
+            _account.guid = generateGUID()
 
-    account.save(function (err) {
-        if (err)
-            res.json({ message: 'Error' });
-        else
+            _account.save(function (err) {
+                if (err)
+                    res.json({ message: 'Error' });
+                else
+                    res.json(_account);
+            });
+        }
+        else {
             res.json(account);
+        }
     });
+    
 }
 
 generateGUID = function() {
