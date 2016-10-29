@@ -1,0 +1,35 @@
+Hack Man 2016
+
+App Name: Popo
+
+App [MVP1]
+- Account / sign in page / sign up
+- swiple left, right (seen, not seen) that collects locaiton of user
+-- if seen send balisc info taken automatically from the person's phone.
+--- gps location of user
+--- user's phone number
+--- user's name/last name
+--- email address
+--- offer option to add more info, that will show more text boxes to allow for info to be modified / new info entered. 
+--- give an option to call the missing person hot line
+-- if not seen (right)
+--- puts the missing person on a queue to re-try in the next 24 hours.
+- Have a full list / hystory page where a user can go back and edit info if they have spotted a missing person before the 24hours retry
+
+Server / API endoint [MVP1]
+- [Get] ListOfMissingPPL
+-- pass in user locaiton to sort list in a relevant location based way
+- [Post] missingPersonSeen
+-- takes in info about where the person has been seen and the user's info so the popo can get in thouch
+- [Post] CreateAccount
+- DeleteAccount
+- Login
+
+Database [MVP]
+- Account table
+- Missing person table
+Betulla.C0de.01
+B3tulla.C0de.01
+
+App [MVP2]
+- Person of interest that you want to be notified about if they are found. (woudl require account)
