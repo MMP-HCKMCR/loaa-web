@@ -33,7 +33,7 @@ module.exports = app;
 
 app.get('/api/missing', list.list);
 app.put('/api/missing/:id', seen.seen);
-app.get('/api/account/:id', accountRetrieve.retrieve);
+app.get('/api/account/:phoneNumber', accountRetrieve.retrieve);
 app.post('/api/account', accountCreate.create);
 app.put('/api/account/:id', accountUpdate.update);
 app.delete('/api/account/:id', accountDelete.delete);

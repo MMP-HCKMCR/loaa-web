@@ -1,17 +1,14 @@
 var Account = require('../../app/models/account');
 
-
+// Retive the account by phone number
 exports.retrieve = function (req, res) {
-    //get all accounts 
+    var phoneNumber = req.params.phoneNumber;
 
-    Account.find(function (err, accounts) {
-        //console.log(accounts);
+    Account.find({ "phoneNumber": phoneNumber }, function (err, account) {
         if (err) {
             res.send(err);
         }
 
-        res.json({
-            "accounts": accounts
-        });
+        res.json(account);
     });
 };
