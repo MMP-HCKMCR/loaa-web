@@ -45,7 +45,7 @@ function loooooooop(allMissingPersons, callback) {
                     );
                 }
                 count++;
-                if (count === length - 1) {
+                if (count === length) {
                     callback("done");
                 }
             });
@@ -65,7 +65,14 @@ exports.list = function (req, res) {
         }
 
         loooooooop(allMissingPersons, function (val) {
-            res.json({ missing: allMissingPersons });
+            var lessThan = []
+            for (i = 0; i < allMissingPersons.length; i++) {
+                if (allMissingPersons[i].distance < 4000) {
+                    lessThan.push(allMissingPersons[i]);
+                }
+            }
+            // limit to < 4000 distance
+            res.json({ missing: lessThan });
         });
     });
 };

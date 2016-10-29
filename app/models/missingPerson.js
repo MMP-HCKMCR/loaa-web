@@ -22,7 +22,7 @@ var MissingPeopleSchema   = new Schema({
     statusChangedToUnconfirmed: String,
     latitude: String,
     longitude: String,
-    distance: String
+    distance: Number
 });
 
 module.exports = mongoose.model('missing_persons', MissingPeopleSchema);
