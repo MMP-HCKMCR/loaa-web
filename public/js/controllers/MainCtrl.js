@@ -4,6 +4,11 @@ angular.module('MainCtrl', [])
         LoaaService.getMissing().then(function (res) {
             $scope.missingPeople = res.data.missing;
         });
+
+        LoaaService.getTop().then(function (res) {
+            $scope.topPeople = res.data.missing;
+        });
+        
         $scope.tagline = 'To the moon and back!';
 
         // link map to html tag id
