@@ -17,4 +17,22 @@ th {
     color: white;
 }
 
+.navbar{
+    background-color: transparent;
+    border-color: #4CAF50
+}
+
+.navbar-brand, .navbar-inverse, navbar-nav, .navbar-inverse .navbar-nav > li > a{
+    color: black !important;
+}
+
+.navbar-header:hover, navbar-nav:hover{
+    background-color: #4CAF50;
+    color: black;
+}
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover{
+    background-color: #4CAF50;
+    color: black;
+}
+
 li:hover {background-color: #f5f5f5}
