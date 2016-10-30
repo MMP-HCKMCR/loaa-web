@@ -9,7 +9,9 @@
 		</div>
 		<div class="col-md-9">
 			<div>
-				<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+				<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                    <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker>
+                </ui-gmap-google-map>
 			</div>
 		</div>
 	</div>
