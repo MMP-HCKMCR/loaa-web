@@ -7,6 +7,7 @@ angular.module('MainCtrl', [])
         // PRIVATE FUNC
         var loadMarkers = function(personId) {
             var person = $.grep($scope.missingPeople, function(e){ return e.id == personId; })[0]; 
+            $scope.currentPerson = person;
             var lastSeenArr = person.lastSeen;
             var markers = [];
             var markerCounter = 0;
@@ -31,6 +32,11 @@ angular.module('MainCtrl', [])
                         draggable: false,
                         animation: google.maps.Animation.DROP,
                         icon: icon
+                        
+                    },
+                    click: function() {
+                        console.log("clicked");
+                        // infowindow.open(map, marker);
                     }
                 });
                 markerCounter++;
@@ -43,6 +49,11 @@ angular.module('MainCtrl', [])
                 latitude: 53.4808, longitude: -2.2426
             },
             zoom: 8
+        };        
+
+        $scope.openInfoWindow = function(e, selectedMarker){ 
+            e.preventDefault(); 
+            google.maps.event.trigger(selectedMarker, 'click'); 
         };
 
         LoaaService.getMissing().then(function (res) {
@@ -63,6 +74,13 @@ angular.module('MainCtrl', [])
 
         $scope.updateMarkers = function (id) {
             loadMarkers(id);
+        };
+
+        $scope.markerClick = function (e) {
+            console.log(e);
+            $scope.selectedMarker = {
+
+            };
         };
 
         

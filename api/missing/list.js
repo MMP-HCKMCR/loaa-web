@@ -5,6 +5,27 @@ var request = {}
 
 var request2 = require('request');
 
+var firstnames = [
+    'John',
+    'Andrew',
+    'Fiona',
+    'Alex',
+    'Sarah',
+    'Daniel',
+    'Jessica',
+    'Sheldon',
+    'Charlotte',
+    'Emily'
+];
+
+var surnames = [
+    'Smith',
+    'Matthews',
+    'Cooper',
+    'Harris',
+    'Jones'
+];
+
 function getLatLong(person, callback) {
     var myResponse = {};
     if (!person.latitude) {
@@ -100,6 +121,19 @@ exports.list = function (req, res) {
                 if (keyA > keyB) return 1;
                 return 0;
             });
+
+            //update name
+            for (var i = 0; i < lessThan.length; i++) {
+                var person = lessThan[i];
+                if (person.forenames == null
+                    || person.forenames.length == 0
+                    || (new RegExp(/\d$/)).test(person.forenames))
+                {
+                    person.forenames = firstnames[parseInt(Math.random() * firstnames.length)];
+                    person.surname = surnames[parseInt(Math.random() * surnames.length)];
+                    person.save(function(err) { });
+                }
+            }
 
             // limit to < 4000 distance
             if (accountId) {
