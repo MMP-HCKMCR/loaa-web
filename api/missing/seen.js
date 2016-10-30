@@ -23,8 +23,9 @@ exports.seen = function (req, res) {
             missing.lastSeen.push(lastSeen)
 
             // text favourited people
-            Account.find({ favourites: missing._id }, function(err, accounts) {
+            Account.find({ 'favourites': req.params.id }, function(err, accounts) {
                 if (!accounts) {
+                    console.log('No accounts found for clockwork: ' + req.params.id);
                     return;
                 }
 
