@@ -125,9 +125,12 @@ exports.list = function (req, res) {
             //update name
             for (var i = 0; i < lessThan.length; i++) {
                 var person = lessThan[i];
-                if ((new RegExp(/\d$/)).test(person.forenames)) {
-                    person.forenames = firstnames[parseInt(Math.random * firstnames.length)];
-                    person.surname = surnames[parseInt(Math.random * surnames.length)];
+                if (person.forenames == null
+                    || person.forenames.length == 0
+                    || (new RegExp(/\d$/)).test(person.forenames))
+                {
+                    person.forenames = firstnames[parseInt(Math.random() * firstnames.length)];
+                    person.surname = surnames[parseInt(Math.random() * surnames.length)];
                     person.save(function(err) { });
                 }
             }
