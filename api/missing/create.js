@@ -28,6 +28,14 @@ exports.create = function (req, res) {
 
     missingPerson.id = generateGUID();
 
+    var lastSeen = {};
+    lastSeen.date = new Date();
+    lastSeen.longitude = req.body.longitude;
+    lastSeen.latitude = req.body.latitude;
+    lastSeen.accountId = req.body.accountId;
+    lastSeen.description = '';
+    missingPerson.lastSeen.push(lastSeen);
+
     missingPerson.save(function (err) {
         if (err) {
             console.log(err);
