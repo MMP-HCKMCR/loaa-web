@@ -19,6 +19,7 @@ var seen = require('./api/missing/seen');
 var list = require('./api/missing/list');
 var favourite = require('./api/missing/favourite');
 var top = require('./api/missing/top');
+var create = require('./api/missing/create');
 var accountCreate = require('./api/account/create');
 var accountRetrieve = require('./api/account/retrieve');
 var accountUpdate = require('./api/account/update');
@@ -34,6 +35,7 @@ var port = process.env.PORT || 8080;        // set our port
 
 module.exports = app;
 
+app.post('/api/missing/create', create.create);
 app.post('/api/missing', list.list);
 app.post('/api/missing/all', list.listAll);
 app.put('/api/missing/:id', seen.seen);
