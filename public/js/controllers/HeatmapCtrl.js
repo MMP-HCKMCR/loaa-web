@@ -1,14 +1,6 @@
 angular.module('HeatmapCtrl', [])
     .controller('HeatmapController', ['$scope', 'LoaaService', function ($scope, LoaaService) {
 
-        // link map to html tag id
-        // $scope.map = {
-        //     center: {
-        //         latitude: 53.4808, longitude: -2.2426
-        //     },
-        //     zoom: 8
-        // };
-
         function HeatLayer(heatmapLayer) {
             // Adding 500 Data Points
             var map, pointarray, heatmap;
