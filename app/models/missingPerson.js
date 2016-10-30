@@ -20,8 +20,8 @@ var MissingPeopleSchema   = new Schema({
     updated: String,
     lastSeen: [],
     statusChangedToUnconfirmed: String,
-    latitude: String,
-    longitude: String,
+    latitude: Number,
+    longitude: Number,
     distance: Number
 });
 

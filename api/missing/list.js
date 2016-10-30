@@ -14,6 +14,19 @@ function getLatLong(person, callback) {
                 if (!error && response.statusCode == 200) {
                     myResponse.longitude = body.geometries[0].x
                     myResponse.latitude = body.geometries[0].y
+
+                    MissingPerson.findById(person._id, function (err, missing) {
+                        if (!missing)
+                            console.log("Error")
+                        else {
+                            missing.longitude = body.geometries[0].x
+                            missing.latitude = body.geometries[0].y
+                            missing.save(function (err) {
+                                console.log("Saved")
+                            });
+                        }
+                    });
+
                     callback(myResponse);
                 }
             }
@@ -43,6 +56,11 @@ function loooooooop(allMissingPersons, callback) {
                         { latitude: request.body.latitude, longitude: request.body.longitude },
                         { latitude: value.latitude, longitude: value.longitude }
                     );
+                }
+                else {
+                    allMissingPersons[i].longitude = 99999999999999999
+                    allMissingPersons[i].latitude = 99999999999999999
+                    allMissingPersons[i].distance = 99999999999999999
                 }
                 count++;
                 if (count === length) {
