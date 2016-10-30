@@ -12,7 +12,7 @@ exports.seen = function (req, res) {
             lastSeen.date = req.body.date
             lastSeen.longitude = req.body.longitude
             lastSeen.latitude = req.body.latitude
-            lastSeen.guid = req.body.guid
+            lastSeen.accountId = req.body.accountId
             lastSeen.description = req.body.description
 
             console.log(lastSeen);

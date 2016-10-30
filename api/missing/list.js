@@ -1,4 +1,5 @@
 var MissingPerson = require('../../app/models/missingPerson');
+var Account = require('../../app/models/account');
 var geolib = require('geolib');
 var request = {}
 
@@ -76,6 +77,7 @@ exports.list = function (req, res) {
     // needs to be post, latitude, longitude
     // add guid verify
     request = req;
+    var accountId = req.body.accountId;
 
     MissingPerson.find({ status: "Missing" }, function (err, allMissingPersons) {
         if (err) {
@@ -98,8 +100,22 @@ exports.list = function (req, res) {
                 if (keyA > keyB) return 1;
                 return 0;
             });
+
             // limit to < 4000 distance
-            res.json({ missing: lessThan });
+            if (accountId) {
+                Account.findById(accountId, function(err, account) {
+                    if (err) {
+                        console.log(err);
+                        res.json({ message: 'Error: ' + err });
+                    }
+                    else {
+                        res.json({ missing: lessThan, favourites: account.favourites });
+                    }
+                });
+            }
+            else {
+                res.json({ missing: lessThan });
+            }            
         });
     });
 };

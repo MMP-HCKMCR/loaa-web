@@ -5,7 +5,8 @@ var AccountSchema   = new Schema({
     phoneNumber: String,
     foreName: String,
     sureName: String,
-    guid: String
+    guid: String,
+    favourites: [String]
 });
 
 module.exports = mongoose.model('account', AccountSchema);
