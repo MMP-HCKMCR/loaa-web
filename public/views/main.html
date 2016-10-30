@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<ul class="list-group">
-				<li class="list-group-item" ng-repeat="person in missingPeople">
+				<li class="list-group-item" ng-repeat="person in missingPeople" ng-click="log(person.id); updateMarkers(person.id)">
 					{{person.forenames}} {{person.surname}}
 				</li>
 			</ul>

@@ -3,35 +3,29 @@ angular.module('MainCtrl', [])
         let greenIcon = "http://maps.google.com/mapfiles/ms/icons/green.png";
         let redIcon = "http://maps.google.com/mapfiles/ms/icons/red.png";
         let blueIcon = "http://maps.google.com/mapfiles/ms/icons/blue.png";
-        
-        // link map to html tag id
-        $scope.map = {
-            center: {
-                latitude: 53.4808, longitude: -2.2426
-            },
-            zoom: 12
-        };
 
-        LoaaService.getMissing().then(function (res) {
-            $scope.missingPeople = res.data.missing;
-            var firstPerson = $scope.missingPeople[0];
-            console.log(firstPerson.forenames);
+        // PRIVATE FUNC
+        var loadMarkers = function(personId) {
+            var person = $.grep($scope.missingPeople, function(e){ return e.id == personId; })[0]; 
+            var lastSeenArr = person.lastSeen;
             var markers = [];
             var markerCounter = 0;
-            for (ls in firstPerson.lastSeen) {
+            $scope.markers = [];
+            for (ls in lastSeenArr) {
                 var icon;
                 if(markerCounter == 0) {
                     icon = greenIcon;
-                }else if(markerCounter == firstPerson.lastSeen.length) {
+                }else if(markerCounter == lastSeenArr.length-1) {
                     icon = redIcon;
                 }else {
                     icon = blueIcon;
                 }
-                markers.push({
+                //markers.push({
+                $scope.markers.push({
                     id: markerCounter,
                     coords: {
-                        latitude: firstPerson.lastSeen[ls].latitude,
-                        longitude: firstPerson.lastSeen[ls].longitude
+                        latitude: lastSeenArr[ls].latitude,
+                        longitude: lastSeenArr[ls].longitude
                     },
                     options: {
                         draggable: false,
@@ -41,8 +35,30 @@ angular.module('MainCtrl', [])
                 });
                 markerCounter++;
             }
-            console.log(markers);
-            $scope.markers = markers;
+        }
+
+        // link map to html tag id
+        $scope.map = {
+            center: {
+                latitude: 53.4808, longitude: -2.2426
+            },
+            zoom: 8
+        };
+
+        LoaaService.getMissing().then(function (res) {
+            $scope.missingPeople = res.data.missing;
+            loadMarkers($scope.missingPeople[0].id);
+            //$scope.markers = markers;
         });
         $scope.tagline = 'To the moon and back!';
+
+        $scope.log = function(str) {
+            console.log(str);
+        };
+
+        $scope.updateMarkers = function (id) {
+            loadMarkers(id);
+        };
+
+        
     }]);
