@@ -32,11 +32,6 @@ angular.module('MainCtrl', [])
                         draggable: false,
                         animation: google.maps.Animation.DROP,
                         icon: icon
-                        
-                    },
-                    click: function() {
-                        console.log("clicked");
-                        // infowindow.open(map, marker);
                     }
                 });
                 markerCounter++;
@@ -50,11 +45,6 @@ angular.module('MainCtrl', [])
             },
             zoom: 8
         };        
-
-        $scope.openInfoWindow = function(e, selectedMarker){ 
-            e.preventDefault(); 
-            google.maps.event.trigger(selectedMarker, 'click'); 
-        };
 
         LoaaService.getMissing().then(function (res) {
             $scope.missingPeople = res.data.missing;
@@ -74,13 +64,6 @@ angular.module('MainCtrl', [])
 
         $scope.updateMarkers = function (id) {
             loadMarkers(id);
-        };
-
-        $scope.markerClick = function (e) {
-            console.log(e);
-            $scope.selectedMarker = {
-
-            };
         };
 
         

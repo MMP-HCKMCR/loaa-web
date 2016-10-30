@@ -1,22 +1,13 @@
 angular.module('appRoutes', [])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-
+        $locationProvider.html5Mode(true);
         $routeProvider
-
-            // home page
             .when('/', {
                 templateUrl: 'views/main.html',
                 controller: 'MainController'
             })
-
-        // // nerds page that will use the NerdController
-        // .when('/nerds', {
-        //     templateUrl: 'views/nerd.html',
-        //     controller: 'NerdController'
-        // });
-
-        $locationProvider.html5Mode(true);
-
-        
-
+            .when('/heatmap', {
+                templateUrl: 'views/heatmap.html',
+                controller: 'HeatmapController'
+            });
     }]);

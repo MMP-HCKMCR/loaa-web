@@ -1,4 +1,4 @@
-angular.module('loaaApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'LoaaService', 'uiGmapgoogle-maps'])
+angular.module('loaaApp', ['ngRoute', 'appRoutes', 'MainCtrl','HeatmapCtrl', 'LoaaService', 'uiGmapgoogle-maps'])
 .config(
     ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
         GoogleMapApiProviders.configure({

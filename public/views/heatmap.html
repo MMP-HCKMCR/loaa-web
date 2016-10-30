@@ -1,0 +1,13 @@
+<div class="jumbotron text-center">
+	<h3>Viewing the Heatmap for all xx missing people</h3>
+	<br />
+	<div class="row">
+		<div class="col-md-12">
+			<div>
+				<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                    <ui-gmap-layer namespace="visualization" type="HeatmapLayer" show="map.showHeat" onCreated="map.heatLayerCallback"></ui-gmap-layer>
+                </ui-gmap-google-map>
+			</div>
+		</div>
+	</div>
+</div>
