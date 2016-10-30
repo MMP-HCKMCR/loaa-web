@@ -17,6 +17,8 @@ mongoose.connect('mongodb://admin:H4ck.All.N1ght@ds013569.mlab.com:13569/loaa');
 // API variables 
 var seen = require('./api/missing/seen');
 var list = require('./api/missing/list');
+var favourite = require('./api/missing/favourite');
+var top = require('./api/missing/top');
 var accountCreate = require('./api/account/create');
 var accountRetrieve = require('./api/account/retrieve');
 var accountUpdate = require('./api/account/update');
@@ -34,6 +36,9 @@ module.exports = app;
 
 app.post('/api/missing', list.list);
 app.put('/api/missing/:id', seen.seen);
+app.post('/api/missing/:id/favourite', favourite.favourite);
+app.get('/api/missing/top', top.top);
+
 app.get('/api/account/:phoneNumber', accountRetrieve.retrieve);
 app.post('/api/account', accountCreate.create);
 app.put('/api/account/:id', accountUpdate.update);

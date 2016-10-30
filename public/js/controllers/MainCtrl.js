@@ -50,6 +50,11 @@ angular.module('MainCtrl', [])
             loadMarkers($scope.missingPeople[0].id);
             //$scope.markers = markers;
         });
+
+        LoaaService.getTop().then(function (res) {
+            $scope.topPeople = res.data.missing;
+        });
+        
         $scope.tagline = 'To the moon and back!';
 
         $scope.log = function(str) {

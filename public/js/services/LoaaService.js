@@ -12,6 +12,10 @@ angular.module('LoaaService', [])
                 return $http.post('/api/missing', data);
             },
 
+            getTop: function (){
+                return $http.get('/api/missing/top');
+            }
+
             // // these will work when more API routes are defined on the Node side of things
             // // call to POST and create a new nerd
             // create : function(nerdData) {

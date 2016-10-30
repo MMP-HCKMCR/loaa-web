@@ -15,4 +15,20 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Count</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="person in topPeople">
+					<td>{{person.forenames}} {{person.surname}}</td>
+					<td>{{person.lastSeen.length}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
