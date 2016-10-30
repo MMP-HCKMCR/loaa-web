@@ -17,6 +17,7 @@ mongoose.connect('mongodb://admin:H4ck.All.N1ght@ds013569.mlab.com:13569/loaa');
 // API variables 
 var seen = require('./api/missing/seen');
 var list = require('./api/missing/list');
+var favourite = require('./api/missing/favourite');
 var accountCreate = require('./api/account/create');
 var accountRetrieve = require('./api/account/retrieve');
 var accountUpdate = require('./api/account/update');
@@ -39,6 +40,7 @@ app.post('/api/account', accountCreate.create);
 app.put('/api/account/:id', accountUpdate.update);
 app.delete('/api/account/:id', accountDelete.delete);
 app.post('/api/account/login', accountLogin.login);
+app.get('/api/missing/favourite', favourite.favourite);
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 
