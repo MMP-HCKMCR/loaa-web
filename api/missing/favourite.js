@@ -1,20 +1,31 @@
-var MissingPerson = require('../../app/models/missingPerson');
+var Missing = require('../../app/models/missingPerson');
+var Account = require('../../app/models/account');
 
 exports.favourite = function (req, res) {
-    MissingPerson.find({ status: "Missing" }, function (err, allMissingPersons) {
+    Missing.findById(req.params.id, function (err, missing) {
         if (err) {
-            res.json(err);
+            console.log(err + ': no person found');
+            res.json({ message: 'Could not find missing person'});
+            return;
         }
 
-        allMissingPersons.sort(function (a, b) {
-            var keyA = a.lastSeen.length,
-                keyB = b.lastSeen.length;
+        Account.findById(req.body.accountId, function(err, account) {
+            if (err) {
+                console.log(err);
+                res.json({ message: 'Could not find account' });
+                return;
+            }
 
-            if (keyA < keyB) return -1;
-            if (keyA > keyB) return 1;
-            return 0;
+            account.favourites.push(missing._id);
+            account.save(function(err) {
+                if (err) {
+                    console.log(err);
+                    res.json({ message: 'Error: ' + err });
+                }
+                else {
+                    res.json(account);
+                }
+            })
         });
-        // limit to < 4000 distance
-        res.json({ missing: allMissingPersons.reverse() });
     });
 }
