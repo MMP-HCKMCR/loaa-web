@@ -37,7 +37,7 @@ module.exports = app;
 app.post('/api/missing', list.list);
 app.put('/api/missing/:id', seen.seen);
 app.post('/api/missing/:id/favourite', favourite.favourite);
-app.post('/api/missing/top', top.top);
+app.get('/api/missing/top', top.top);
 
 app.get('/api/account/:phoneNumber', accountRetrieve.retrieve);
 app.post('/api/account', accountCreate.create);
