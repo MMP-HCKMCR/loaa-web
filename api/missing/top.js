@@ -6,7 +6,15 @@ exports.top = function (req, res) {
             res.json(err);
         }
 
-        allMissingPersons.sort(function (a, b) {
+        temp = [];
+
+        for (i = 0; i < allMissingPersons.length; i++){
+            if (allMissingPersons[i].lastSeen.length > 0){
+                temp.push(allMissingPersons[i])
+            }
+        }
+
+        temp.sort(function (a, b) {
             var keyA = a.lastSeen.length,
                 keyB = b.lastSeen.length;
 
@@ -14,7 +22,7 @@ exports.top = function (req, res) {
             if (keyA > keyB) return 1;
             return 0;
         });
-        // limit to < 4000 distance
-        res.json({ missing: allMissingPersons.reverse() });
+
+        res.json({ missing: temp.reverse() });
     });
 }
