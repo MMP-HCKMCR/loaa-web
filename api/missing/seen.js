@@ -15,8 +15,11 @@ exports.seen = function (req, res) {
             if (req.body.latitude) {
                 lastSeen.latitude = req.body.latitude
             }
-            if (req.body.reporter) {
-                lastSeen.reporter = req.body.reporter
+            if (req.body.guid) {
+                lastSeen.guid = req.body.guid
+            }
+            if (req.body.description) {
+                lastSeen.description = req.body.description
             }
 
             missing.lastSeen.push(lastSeen)
