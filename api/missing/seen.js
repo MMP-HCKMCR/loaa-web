@@ -3,7 +3,7 @@ var Missing = require('../../app/models/missingPerson');
 exports.seen = function (req, res) {
     Missing.findById(req.params.id, function (err, missing) {
         if (!missing || err) {
-            console.log(err);
+            console.log(err + ': no person found');
             res.json({ message: 'Could not find missing person'});
         }
         else {
