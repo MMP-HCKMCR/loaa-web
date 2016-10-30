@@ -35,6 +35,7 @@ var port = process.env.PORT || 8080;        // set our port
 module.exports = app;
 
 app.post('/api/missing', list.list);
+app.post('/api/missing/all', list.listAll);
 app.put('/api/missing/:id', seen.seen);
 app.post('/api/missing/:id/favourite', favourite.favourite);
 app.get('/api/missing/top', top.top);

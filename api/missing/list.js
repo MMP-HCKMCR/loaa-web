@@ -103,7 +103,7 @@ exports.list = function (req, res) {
 
             // limit to < 4000 distance
             if (accountId) {
-                Account.findById(accountId, function(err, account) {
+                Account.findById(accountId, function (err, account) {
                     if (err) {
                         console.log(err);
                         res.json({ message: 'Error: ' + err });
@@ -115,7 +115,48 @@ exports.list = function (req, res) {
             }
             else {
                 res.json({ missing: lessThan });
-            }            
+            }
+        });
+    });
+}
+
+exports.listAll = function (req, res) {
+    // get the list of all missing people from the database
+    // needs to be post, latitude, longitude
+    // add guid verify
+    request = req;
+    var accountId = req.body.accountId;
+
+    MissingPerson.find({ status: "Missing" }, function (err, allMissingPersons) {
+        if (err) {
+            res.json(err);
+        }
+
+        loooooooop(allMissingPersons, function (val) {
+
+            allMissingPersons.sort(function (a, b) {
+                var keyA = a.distance,
+                    keyB = b.distance;
+
+                if (keyA < keyB) return -1;
+                if (keyA > keyB) return 1;
+                return 0;
+            });
+
+            if (accountId) {
+                Account.findById(accountId, function (err, account) {
+                    if (err) {
+                        console.log(err);
+                        res.json({ message: 'Error: ' + err });
+                    }
+                    else {
+                        res.json({ missing: allMissingPersons, favourites: account.favourites });
+                    }
+                });
+            }
+            else {
+                res.json({ missing: allMissingPersons });
+            }
         });
     });
 };
