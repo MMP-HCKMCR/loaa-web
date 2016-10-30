@@ -29,7 +29,7 @@ exports.create = function (req, res) {
     missingPerson.id = generateGUID();
 
     var lastSeen = {};
-    lastSeen.date = new Date();
+    lastSeen.date = (new Date()).toString();
     lastSeen.longitude = req.body.longitude;
     lastSeen.latitude = req.body.latitude;
     lastSeen.accountId = req.body.accountId;
